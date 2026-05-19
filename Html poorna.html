@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Speech and Debate | Poorna Foundation</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0d1f3c;
+  --navy2:#162d52;
+  --gold:#c8a84b;
+  --gold-lt:#e8d49a;
+  --cream:#f8f5ef;
+  --offwhite:#ffffff;
+  --text:#1a1a2e;
+  --muted:#6b7280;
+  --red:#b5292d;
+  --border:rgba(0,0,0,.09);
+}
+html{scroll-behavior:smooth}
+body{background:var(--cream);font-family:'DM Sans',sans-serif;color:var(--text);line-height:1.6}
+a{text-decoration:none;color:inherit}
+img{display:block;width:100%;height:100%;object-fit:cover}
+
+/* ── NAV ── */
+nav{background:var(--navy);padding:0 48px;display:flex;align-items:center;justify-content:space-between;height:64px;position:sticky;top:0;z-index:100}
+.nav-logo{display:flex;align-items:center;gap:10px}
+.nav-logo img{width:36px;height:36px;object-fit:contain;border-radius:4px}
+.nav-logo-text{color:#fff;font-family:'Playfair Display',serif;font-size:14px;letter-spacing:.5px}
+.nav-logo-sub{color:rgba(255,255,255,.45);font-size:10px;letter-spacing:1px;text-transform:uppercase;margin-top:1px}
+.nav-links{display:flex;gap:28px}
+.nav-links a{color:rgba(255,255,255,.65);font-size:13px;letter-spacing:.3px;transition:color .2s}
+.nav-links a:hover{color:var(--gold)}
+.nav-links a.active{color:#fff}
+.nav-cta{background:var(--gold);color:var(--navy);font-size:12px;font-weight:500;padding:9px 20px;border-radius:4px;letter-spacing:.5px;transition:background .2s}
+.nav-cta:hover{background:var(--gold-lt)}
+
+/* ── HERO ── */
+.hero{background:var(--navy);display:grid;grid-template-columns:1fr 1fr;min-height:540px}
+.hero-left{padding:70px 48px 60px;display:flex;flex-direction:column;justify-content:center}
+.hero-eyebrow{color:var(--gold);font-size:11px;letter-spacing:3px;text-transform:uppercase;margin-bottom:16px;font-weight:500}
+.hero-title{color:#fff;font-family:'Playfair Display',serif;font-size:52px;line-height:1.08;margin-bottom:22px}
+.hero-title em{color:var(--gold);font-style:italic}
+.hero-body{color:rgba(255,255,255,.68);font-size:16px;line-height:1.75;max-width:440px;margin-bottom:32px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:44px}
+.btn-gold{background:var(--gold);color:var(--navy);padding:13px 26px;border-radius:5px;font-weight:500;font-size:14px;transition:background .2s}
+.btn-gold:hover{background:var(--gold-lt)}
+.btn-ghost{border:1.5px solid rgba(255,255,255,.35);color:rgba(255,255,255,.85);padding:13px 26px;border-radius:5px;font-size:14px;transition:all .2s}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+.hero-stats{display:flex;gap:0;border-top:1px solid rgba(255,255,255,.1);padding-top:28px}
+.hero-stat{padding-right:36px;margin-right:36px;border-right:1px solid rgba(255,255,255,.12)}
+.hero-stat:last-child{border-right:none;padding-right:0;margin-right:0}
+.hero-stat-num{color:#fff;font-family:'Playfair Display',serif;font-size:34px;font-weight:700;line-height:1}
+.hero-stat-label{color:rgba(255,255,255,.45);font-size:11px;letter-spacing:.5px;margin-top:4px}
+
+/* ── GALLERY ROTATOR ── */
+.hero-right{position:relative;overflow:hidden}
+.gallery-track{position:relative;width:100%;height:100%;min-height:540px}
+.gallery-slide{position:absolute;inset:0;opacity:0;transition:opacity .9s ease}
+.gallery-slide.active{opacity:1}
+.gallery-slide img{width:100%;height:100%;object-fit:cover;display:block}
+.gallery-overlay{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent 20%,rgba(13,31,60,.88));padding:20px 24px 22px}
+.gallery-year{color:var(--gold);font-size:10px;letter-spacing:3px;text-transform:uppercase;margin-bottom:4px}
+.gallery-caption{color:#fff;font-size:14px;font-weight:300}
+.gallery-nav{position:absolute;bottom:22px;right:24px;display:flex;gap:6px}
+.gallery-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.3);border:none;cursor:pointer;padding:0;transition:all .3s}
+.gallery-dot.active{background:var(--gold);width:20px;border-radius:3px}
+
+/* ── TWO-COL BODY ── */
+.body-wrap{display:grid;grid-template-columns:1fr 1fr}
+
+/* ── LEFT COL ── */
+.left-col{padding:52px 48px;border-right:1px solid var(--border)}
+.section-label{color:var(--gold);font-size:10px;letter-spacing:3px;text-transform:uppercase;font-weight:500;margin-bottom:10px}
+.section-heading{font-family:'Playfair Display',serif;font-size:26px;color:var(--navy);line-height:1.2;margin-bottom:22px}
+.divider{height:1px;background:var(--border);margin:40px 0}
+
+/* Team cards */
+.team-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:4px}
+.team-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:14px 16px;display:flex;align-items:center;gap:12px;transition:border-color .2s}
+.team-card:hover{border-color:var(--gold)}
+.team-card.wide{grid-column:1/-1}
+.avatar{width:44px;height:44px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;color:var(--gold);font-family:'Playfair Display',serif;font-size:17px;font-weight:700;flex-shrink:0}
+.team-name{font-size:14px;font-weight:500;color:var(--navy)}
+.team-role{font-size:11px;color:var(--muted);margin-top:2px;line-height:1.4}
+
+/* Flyers */
+.flyer-list{display:flex;flex-direction:column;gap:10px}
+.flyer-row{background:#fff;border:1px solid var(--border);border-radius:10px;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:border-color .2s}
+.flyer-row:hover{border-color:var(--gold)}
+.flyer-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-right:12px}
+.flyer-info{flex:1}
+.flyer-name{font-size:14px;font-weight:500;color:var(--navy)}
+.flyer-date{font-size:12px;color:var(--muted);margin-top:2px}
+.flyer-badge{font-size:11px;padding:4px 11px;border-radius:20px;white-space:nowrap;margin-left:12px}
+.badge-open{background:#e8f0fd;color:#1a4da8}
+.badge-soon{background:#fdf3e3;color:#8a5a00}
+.badge-new{background:#e8f5ec;color:#1a6633}
+
+/* ── RIGHT COL ── */
+.right-col{padding:52px 48px}
+
+/* Recent photos grid */
+.photo-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:6px}
+.photo-cell{border-radius:10px;overflow:hidden;height:140px;position:relative;cursor:pointer}
+.photo-cell img{transition:transform .35s}
+.photo-cell:hover img{transform:scale(1.06)}
+.photo-cap{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(13,31,60,.82));padding:8px 12px;color:#fff;font-size:11px;letter-spacing:.2px}
+.photo-cell.tall{height:296px;grid-row:span 2}
+
+/* Coaches */
+.coaches-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.coach-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:18px;text-align:center;transition:border-color .2s}
+.coach-card:hover{border-color:var(--gold)}
+.coach-avatar{width:52px;height:52px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;color:var(--gold);font-family:'Playfair Display',serif;font-size:19px;font-weight:700;margin:0 auto 12px}
+.coach-name{font-size:14px;font-weight:500;color:var(--navy)}
+.coach-title{font-size:11px;color:var(--muted);margin-top:3px}
+.coach-specialty{display:inline-block;margin-top:8px;font-size:10px;background:#f3f0e8;color:#6b5a2a;padding:3px 10px;border-radius:20px;letter-spacing:.5px}
+.coach-card.cta-card{background:var(--navy);border-color:var(--navy)}
+.coach-card.cta-card .coach-avatar{background:rgba(200,168,75,.15)}
+.coach-card.cta-card .coach-name{color:#fff}
+.coach-card.cta-card .coach-title{color:rgba(255,255,255,.5)}
+.coach-card.cta-card .coach-specialty{background:rgba(200,168,75,.15);color:var(--gold)}
+
+/* ── IMPACT STRIP ── */
+.impact{padding:60px 48px;border-top:1px solid var(--border);background:#fff;grid-column:1/-1}
+.impact-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:32px}
+.impact-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
+.impact-card{background:var(--cream);border:1px solid var(--border);border-radius:12px;padding:24px}
+.impact-card:first-child{background:var(--navy)}
+.quote-mark{font-family:'Playfair Display',serif;font-size:48px;color:var(--gold);line-height:.7;margin-bottom:10px;display:block}
+.impact-card:first-child .quote-mark{color:rgba(200,168,75,.6)}
+.impact-quote{font-size:14px;line-height:1.7;color:#374151;font-style:italic}
+.impact-card:first-child .impact-quote{color:rgba(255,255,255,.8)}
+.impact-author{margin-top:18px;display:flex;align-items:center;gap:10px}
+.impact-av{width:36px;height:36px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:13px;font-weight:700;flex-shrink:0}
+.impact-card:first-child .impact-av{background:rgba(200,168,75,.2)}
+.impact-name{font-size:13px;font-weight:500;color:var(--navy)}
+.impact-card:first-child .impact-name{color:#fff}
+.impact-yr{font-size:11px;color:var(--muted)}
+.impact-card:first-child .impact-yr{color:rgba(255,255,255,.4)}
+
+/* ── YEARS GALLERY (collapsible) ── */
+.years-section{padding:52px 48px;border-top:1px solid var(--border);grid-column:1/-1}
+.years-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:32px}
+.year-tabs{display:flex;gap:6px}
+.ytab{padding:8px 18px;border-radius:5px;font-size:13px;font-weight:500;cursor:pointer;border:1px solid var(--border);background:#fff;color:var(--muted);transition:all .2s}
+.ytab.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.year-pane{display:none;grid-template-columns:repeat(3,1fr);gap:12px}
+.year-pane.visible{display:grid}
+.year-photo{border-radius:10px;overflow:hidden;height:200px;position:relative}
+.year-photo img{transition:transform .3s}
+.year-photo:hover img{transform:scale(1.05)}
+.year-photo-cap{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(13,31,60,.8));padding:10px 12px;color:#fff;font-size:12px}
+
+/* ── FOOTER ── */
+footer{background:var(--navy);padding:32px 48px;grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.footer-left{color:rgba(255,255,255,.5);font-size:12px;line-height:1.8}
+.footer-left a{color:rgba(255,255,255,.5)}
+.footer-left a:hover{color:var(--gold)}
+.footer-right{display:flex;gap:24px}
+.footer-right a{color:rgba(255,255,255,.4);font-size:12px;transition:color .2s}
+.footer-right a:hover{color:var(--gold)}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="https://www.poornafoundation.org" class="nav-logo">
+    <img src="https://static.wixstatic.com/media/0049c7_867ff365fcec481b8b13a4f3ce91524f~mv2.png" alt="Poorna Foundation logo">
+    <div>
+      <div class="nav-logo-text">Poorna Foundation</div>
+      <div class="nav-logo-sub">Complete Development Through Education</div>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="https://www.poornafoundation.org/announcements">Announcements</a>
+    <a href="https://www.poornafoundation.org/news">News Room</a>
+    <a href="https://www.poornafoundation.org/projects">Projects</a>
+    <a href="https://www.poornafoundation.org/programs" class="active">Programs</a>
+    <a href="https://www.poornafoundation.org/about-us">About</a>
+  </div>
+  <a href="https://www.poornafoundation.org/contact" class="nav-cta">Contact Us</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Poorna Foundation · Programs</div>
+    <h1 class="hero-title">Find Your<br><em>Voice.</em><br>Win the Room.</h1>
+    <p class="hero-body">We train middle and high schoolers to argue fearlessly, think critically, and speak with conviction — skills that last far beyond the podium.</p>
+    <div class="hero-actions">
+      <a href="https://www.poornafoundation.org/contact" class="btn-gold">Join the Program</a>
+      <a href="#events" class="btn-ghost">View Events ↓</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num">4+</div>
+        <div class="hero-stat-label">Years Running</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">100+</div>
+        <div class="hero-stat-label">Students Trained</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">2022</div>
+        <div class="hero-stat-label">Founded</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="gallery-track" id="heroGallery">
+      <div class="gallery-slide active">
+        <img src="https://static.wixstatic.com/media/0049c7_3e032aa3d8c84aedbf7c72f91e7a68c5~mv2.jpeg" alt="Spring Camp 2025 session">
+        <div class="gallery-overlay">
+          <div class="gallery-year">2025</div>
+          <div class="gallery-caption">Spring Camp — Opening Session</div>
+        </div>
+      </div>
+      <div class="gallery-slide">
+        <img src="https://static.wixstatic.com/media/0049c7_392a1b3105284745866df30645322680~mv2.jpeg" alt="2025 cohort group photo">
+        <div class="gallery-overlay">
+          <div class="gallery-year">2025</div>
+          <div class="gallery-caption">Summer Cohort Group Photo</div>
+        </div>
+      </div>
+      <div class="gallery-slide">
+        <img src="https://static.wixstatic.com/media/0049c7_31491bb44cf44c13a0166f7d574a5962~mv2.jpeg" alt="2025 speech practice">
+        <div class="gallery-overlay">
+          <div class="gallery-year">2025</div>
+          <div class="gallery-caption">Live Speech Practice Round</div>
+        </div>
+      </div>
+      <div class="gallery-slide">
+        <img src="https://static.wixstatic.com/media/0049c7_43f68c3a633c4e75a55bad8485633bb2~mv2.jpg" alt="2024 summer intensive">
+        <div class="gallery-overlay">
+          <div class="gallery-year">2024</div>
+          <div class="gallery-caption">Summer Intensive — Debate Workshop</div>
+        </div>
+      </div>
+      <div class="gallery-slide">
+        <img src="https://static.wixstatic.com/media/0049c7_360c670612ff4ba782a40d6a7330611c~mv2.jpg" alt="2023 program">
+        <div class="gallery-overlay">
+          <div class="gallery-year">2023</div>
+          <div class="gallery-caption">2023 Program — Practice Tournament</div>
+        </div>
+      </div>
+    </div>
+    <div class="gallery-nav" id="heroDots"></div>
+  </div>
+</section>
+
+<!-- TWO-COL BODY -->
+<div class="body-wrap">
+
+  <!-- LEFT -->
+  <div class="left-col">
+
+    <!-- Team -->
+    <div class="section-label">Program Leadership</div>
+    <h2 class="section-heading">Meet the Team</h2>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="avatar">S</div>
+        <div>
+          <div class="team-name">Sahaj</div>
+          <div class="team-role">Program Head</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="avatar">D</div>
+        <div>
+          <div class="team-name">Dahlia</div>
+          <div class="team-role">Head of Marketing</div>
+        </div>
+      </div>
+      <div class="team-card wide">
+        <div class="avatar">V</div>
+        <div>
+          <div class="team-name">Vrisan</div>
+          <div class="team-role">Head of International Communications</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Flyers -->
+    <div id="events">
+      <div class="section-label">Upcoming Events</div>
+      <h2 class="section-heading">Flyers &amp; Events</h2>
+      <div class="flyer-list">
+        <div class="flyer-row">
+          <div class="flyer-dot" style="background:var(--red)"></div>
+          <div class="flyer-info">
+            <div class="flyer-name">Summer Debate Camp 2025</div>
+            <div class="flyer-date">July 14–18 · Sugar Land, TX</div>
+          </div>
+          <span class="flyer-badge badge-open">Registration Open</span>
+        </div>
+        <div class="flyer-row">
+          <div class="flyer-dot" style="background:var(--gold)"></div>
+          <div class="flyer-info">
+            <div class="flyer-name">Public Speaking Workshop</div>
+            <div class="flyer-date">June 7 · Online (Virtual)</div>
+          </div>
+          <span class="flyer-badge badge-soon">Coming Soon</span>
+        </div>
+        <div class="flyer-row">
+          <div class="flyer-dot" style="background:#374151"></div>
+          <div class="flyer-info">
+            <div class="flyer-name">Fall Invitational Tournament</div>
+            <div class="flyer-date">October 2025 · TBA</div>
+          </div>
+          <span class="flyer-badge badge-new">Just Announced</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT -->
+  <div class="right-col">
+
+    <!-- Recent photos -->
+    <div class="section-label">Most Recent Events · 2025</div>
+    <h2 class="section-heading">Recent Photos</h2>
+    <div class="photo-grid">
+      <div class="photo-cell tall">
+        <img src="https://static.wixstatic.com/media/0049c7_392a1b3105284745866df30645322680~mv2.jpeg" alt="2025 cohort">
+        <div class="photo-cap">Summer 2025 — Full Cohort</div>
+      </div>
+      <div class="photo-cell">
+        <img src="https://static.wixstatic.com/media/0049c7_3e032aa3d8c84aedbf7c72f91e7a68c5~mv2.jpeg" alt="Opening session">
+        <div class="photo-cap">Opening Session</div>
+      </div>
+      <div class="photo-cell">
+        <img src="https://static.wixstatic.com/media/0049c7_31491bb44cf44c13a0166f7d574a5962~mv2.jpeg" alt="Speech practice">
+        <div class="photo-cap">Speech Practice Round</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Coaches -->
+    <div class="section-label">Program Coaches</div>
+    <h2 class="section-heading">The Coaches</h2>
+    <div class="coaches-grid">
+      <div class="coach-card">
+        <div class="coach-avatar">C1</div>
+        <div class="coach-name">Coach Name</div>
+        <div class="coach-title">Head Coach</div>
+        <div class="coach-specialty">Lincoln-Douglas</div>
+      </div>
+      <div class="coach-card">
+        <div class="coach-avatar">C2</div>
+        <div class="coach-name">Coach Name</div>
+        <div class="coach-title">Assistant Coach</div>
+        <div class="coach-specialty">Public Forum</div>
+      </div>
+      <div class="coach-card">
+        <div class="coach-avatar">C3</div>
+        <div class="coach-name">Coach Name</div>
+        <div class="coach-title">Speech Coach</div>
+        <div class="coach-specialty">Original Oratory</div>
+      </div>
+      <div class="coach-card cta-card">
+        <div class="coach-avatar" style="font-size:22px">+</div>
+        <div class="coach-name">Join the Team</div>
+        <div class="coach-title">Volunteer coaches welcome</div>
+        <a href="https://www.poornafoundation.org/contact" class="coach-specialty" style="display:inline-block">Apply Now →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- IMPACT -->
+  <div class="impact">
+    <div class="impact-header">
+      <div>
+        <div class="section-label">Student Voices</div>
+        <h2 class="section-heading" style="margin-bottom:0">How Poorna S&amp;D Changed Us</h2>
+      </div>
+      <a href="https://www.poornafoundation.org/contact" class="btn-gold" style="font-size:13px;padding:10px 20px">Share Your Story</a>
+    </div>
+    <div class="impact-grid">
+      <div class="impact-card">
+        <span class="quote-mark">"</span>
+        <div class="impact-quote">Before this program I couldn't make eye contact during a presentation. Now I'm running for student council — Poorna taught me that my voice actually matters.</div>
+        <div class="impact-author">
+          <div class="impact-av">A</div>
+          <div>
+            <div class="impact-name">Aanya R.</div>
+            <div class="impact-yr">9th Grade · Summer 2024</div>
+          </div>
+        </div>
+      </div>
+      <div class="impact-card">
+        <span class="quote-mark">"</span>
+        <div class="impact-quote">The debate rounds were intense but the coaches genuinely cared. I placed at my first tournament two months after camp. I didn't expect that at all.</div>
+        <div class="impact-author">
+          <div class="impact-av" style="background:var(--navy)">K</div>
+          <div>
+            <div class="impact-name">Kiran S.</div>
+            <div class="impact-yr">11th Grade · Summer 2023</div>
+          </div>
+        </div>
+      </div>
+      <div class="impact-card">
+        <span class="quote-mark">"</span>
+        <div class="impact-quote">I used to think debate was just arguing. Poorna showed me it's about listening, building logic, and respecting the other side — that changed everything.</div>
+        <div class="impact-author">
+          <div class="impact-av" style="background:var(--navy)">M</div>
+          <div>
+            <div class="impact-name">Maya T.</div>
+            <div class="impact-yr">8th Grade · Spring 2025</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- YEARS GALLERY -->
+  <div class="years-section">
+    <div class="years-header">
+      <div>
+        <div class="section-label">Archive</div>
+        <h2 class="section-heading" style="margin-bottom:0">Photos by Year</h2>
+      </div>
+      <div class="year-tabs" id="yearTabs">
+        <button class="ytab active" data-year="2025">2025</button>
+        <button class="ytab" data-year="2024">2024</button>
+        <button class="ytab" data-year="2023">2023</button>
+        <button class="ytab" data-year="2022">2022</button>
+      </div>
+    </div>
+
+    <div class="year-pane visible" id="pane-2025">
+      <div class="year-photo"><img src="https://static.wixstatic.com/media/0049c7_3e032aa3d8c84aedbf7c72f91e7a68c5~mv2.jpeg" alt="2025 session 1"><div class="year-photo-cap">Opening Session</div></div>
+      <div class="year-photo"><img src="https://static.wixstatic.com/media/0049c7_392a1b3105284745866df30645322680~mv2.jpeg" alt="2025 group"><div class="year-photo-cap">Full Cohort Photo</div></div>
+      <div class="year-photo"><img src="https://static.wixstatic.com/media/0049c7_31491bb44cf44c13a0166f7d574a5962~mv2.jpeg" alt="2025 speech"><div class="year-photo-cap">Speech Practice</div></div>
+      <div class="year-photo"><img src="https://static.wixstatic.com/media/0049c7_230dc5fc0a6c4f86b9f540926772ee5f~mv2.jpeg" alt="2025 debate"><div class="year-photo-cap">Debate Workshop</div></div>
+      <div class="year-photo"><img src="https://static.wixstatic.com/media/0049c7_1627007d5e7744b6b94ec619055b6637~mv2.jpeg" alt="2025 session 5"><div class="year-photo-cap">Group Activity</div></div>
+      <div class="year-photo"><img src="https://static.wixstatic.com/media/0049c7_9af105cc3aed42f09f2364273bacecbc~mv2.jpeg" alt="2025 session 6"><div class="year-photo-cap">Closing Ceremony</div></div>
+    </div>
+
+    <div class="year-pane" id="pane-2024">
+      <div class="year-photo"><img src="https://static.wixstatic.com/media/0049c7_43f68c3a633c4e75a55bad8485633bb2~mv2.jpg" alt="2024 session 1"><div class="year-photo-cap">Summer Intensive Day 1</div></div>
+      <div class="year-photo"><img src="https://static.wixstatic.com/media/0049c7_7c201a57d8d14df48094b71e1771a0b0~mv2.jpg" alt="2024 debate"><div class="year-photo-cap">Debate Rounds</div></div>
+      <div class="year-photo"><img src="https://static.wixstatic.com/media/0049c7_c722e9bc140d4f87955dfeddfc837f03~mv2.jpg" alt="2024 group"><div class="year-photo-cap">Workshop Session</div></div>
+      <div class="year-photo"><img src="https://static.wixstatic.com/media/0049c7_ab687a01e1a14899b43d094c396784c1~mv2.jpg" alt="2024 session 4"><div class="year-photo-cap">Coaching Feedback</div></div>
+      <div class="year-photo"><img src="https://static.wixstatic.com/media/0049c7_d5aaa5dd54034d848b5f600486d85439~mv2.jpg" alt="2024 awards"><div class="year-photo-cap">Awards Ceremony</div></div>
+      <div class="year-photo"><img src="https://static.wixstatic.com/media/0049c7_c7e7fc23851341249a46e6fab1f9d6e1~mv2.jpg" alt="2024 closing"><div class="year-photo-cap">Closing Session</div></div>
+    </div>
+
+    <div class="year-pane" id="pane-2023">
+      <div class="year-photo"><img src="https://static.wixstatic.com/media/0049c7_360c670612ff4ba782a40d6a7330611c~mv2.jpg" alt="2023 team"><div class="year-photo-cap">Program Team</div></div>
+      <div class="year-photo"><img src="https://static.wixstatic.com/media/0049c7_ade4000cfbcb41f5a82abab7aee4072c~mv2.jpg" alt="2023 session"><div class="year-photo-cap">Workshop Session</div></div>
+      <div class="year-photo"><img src="https://static.wixstatic.com/media/0049c7_4c3057add3c34169829d6059648e94b0~mv2.jpg" alt="2023 debate"><div class="year-photo-cap">Practice Debate</div></div>
+      <div class="year-photo"><img src="https://static.wixstatic.com/media/0049c7_b846246f328c4894894b3b6061a06fb6~mv2.jpg" alt="2023 group"><div class="year-photo-cap">Full Group Session</div></div>
+      <div class="year-photo"><img src="https://static.wixstatic.com/media/0049c7_0ba4b13305c64e67a9533c91d9741956~mv2.jpg" alt="2023 activity"><div class="year-photo-cap">Group Activity</div></div>
+      <div class="year-photo"><img src="https://static.wixstatic.com/media/0049c7_4c3057add3c34169829d6059648e94b0~mv2.jpg" alt="2023 session 2"><div class="year-photo-cap">Lecture Session</div></div>
+    </div>
+
+    <div class="year-pane" id="pane-2022">
+      <div class="year-photo"><img src="https://static.wixstatic.com/media/0049c7_b32f6b7af9124b7f9b24627b1e8928a5~mv2.jpg" alt="2022 session 1"><div class="year-photo-cap">Founding Camp Day 1</div></div>
+      <div class="year-photo"><img src="https://static.wixstatic.com/media/0049c7_a3c1fbcfd6d5436eafa668609636edf6~mv2.jpg" alt="2022 debate"><div class="year-photo-cap">First Debate Rounds</div></div>
+      <div class="year-photo"><img src="https://static.wixstatic.com/media/0049c7_90a4dd3746fa4253b2f5c99c7bf3494a~mv2.jpg" alt="2022 group"><div class="year-photo-cap">Podium Practice</div></div>
+      <div class="year-photo"><img src="https://static.wixstatic.com/media/0049c7_78cccdd4892a4d2a89e240b535afd743~mv2.jpg" alt="2022 session 4"><div class="year-photo-cap">Speech Workshop</div></div>
+      <div class="year-photo"><img src="https://static.wixstatic.com/media/0049c7_019a8c0f39ed4c10a06f33792b72f731~mv2.jpg" alt="2022 awards"><div class="year-photo-cap">Awards &amp; Certificates</div></div>
+      <div class="year-photo"><img src="https://static.wixstatic.com/media/0049c7_7b47dabeb3a14bf8aa6eff90002dd2df~mv2.jpg" alt="2022 closing"><div class="year-photo-cap">First-Ever Closing Ceremony</div></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-left">
+      © 2026 Poorna Foundation · Registered Charity 84-2562141<br>
+      4507 Miller Ridge Ln, Sugar Land, TX 77479 · +1 (772)-418-4763<br>
+      <a href="mailto:contact@poornafoundation.org">contact@poornafoundation.org</a>
+    </div>
+    <div class="footer-right">
+      <a href="https://www.poornafoundation.org/privacy-policy">Privacy Policy</a>
+      <a href="https://www.poornafoundation.org/terms-and-conditions">Terms &amp; Conditions</a>
+      <a href="https://www.poornafoundation.org">poornafoundation.org</a>
+    </div>
+  </footer>
+
+</div><!-- end body-wrap -->
+
+<script>
+// Hero gallery rotator
+(function(){
+  const slides = document.querySelectorAll('#heroGallery .gallery-slide');
+  const dotsEl = document.getElementById('heroDots');
+  let cur = 0;
+  slides.forEach((_,i)=>{
+    const d = document.createElement('button');
+    d.className='gallery-dot'+(i===0?' active':'');
+    d.setAttribute('aria-label','Go to slide '+(i+1));
+    d.onclick=()=>go(i);
+    dotsEl.appendChild(d);
+  });
+  function go(n){
+    slides[cur].classList.remove('active');
+    dotsEl.children[cur].classList.remove('active');
+    cur=n;
+    slides[cur].classList.add('active');
+    dotsEl.children[cur].classList.add('active');
+  }
+  setInterval(()=>go((cur+1)%slides.length),3800);
+})();
+
+// Year tabs
+(function(){
+  const tabs = document.querySelectorAll('.ytab');
+  tabs.forEach(tab=>{
+    tab.addEventListener('click',()=>{
+      const y = tab.dataset.year;
+      document.querySelectorAll('.ytab').forEach(t=>t.classList.remove('active'));
+      document.querySelectorAll('.year-pane').forEach(p=>p.classList.remove('visible'));
+      tab.classList.add('active');
+      document.getElementById('pane-'+y).classList.add('visible');
+    });
+  });
+})();
+</script>
+</body>
+</html>
